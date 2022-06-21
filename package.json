@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "babel app.js -d dist",
-    "start": "npm run build && node dist/app.js",
+    "build": "babel app.js -d build",
+    "start": "node app",
     "dev": "nodemon app"
   },
   "keywords": [],
