@@ -79,5 +79,5 @@ module.exports = {
   userDelete,
   userPost,
   userPut,
-  userById
+  userById,
 };
