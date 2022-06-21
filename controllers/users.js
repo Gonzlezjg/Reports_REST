@@ -2,6 +2,19 @@ const { response } = require("express");
 const bcryptjs = require("bcrypt");
 const User = require("../models/user");
 
+const userById = async (req, res = response) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  if (!user) {
+    return res.status(400).json({
+      msg: "Usuario no encontrado",
+    });
+  }
+  res.json({
+    user,
+  });
+};
+
 const userGet = async (req, res = response) => {
   const { limit = 5 } = req.query;
 
@@ -66,4 +79,5 @@ module.exports = {
   userDelete,
   userPost,
   userPut,
+  userById
 };
