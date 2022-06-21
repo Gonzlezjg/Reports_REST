@@ -2,10 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "build": "babel app.js -d dist",
+    "start": "npm run build && node dist/app.js",
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,9 @@
     "mongoose": "^6.0.7"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
     "nodemon": "^2.0.16"
   }
 }
