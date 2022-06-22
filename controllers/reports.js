@@ -40,7 +40,8 @@ const reportsPost = async (req, res = response) => {
   const { name, message, user } = req.body;
 
   const findUser = await User.findById(user);
-  const { userName } = findUser;
+  const { user_name: userName } = findUser;
+
   if (!findUser) {
     return res.status(400).json({ msg: "El usuario no existe" });
   }
@@ -68,15 +69,21 @@ const reportsPost = async (req, res = response) => {
     userName,
   };
 
-  const reports = new Reports(data);
-
   await User.findByIdAndUpdate(user, {
     $inc: { reportsCount: 1 },
   });
 
+  const reports = new Reports({
+    name,
+    message,
+    user,
+  });
+
   await reports.save();
 
-  res.status(201).json(reports);
+  res.json({
+    msg: "Reporte creado correctamente",
+  });
 };
 
 const repotsDelete = async (req, res = response) => {
