@@ -40,7 +40,7 @@ const reportsPost = async (req, res = response) => {
   const { name, message, user } = req.body;
 
   const findUser = await User.findById(user);
-
+  const { userName } = findUser;
   if (!findUser) {
     return res.status(400).json({ msg: "El usuario no existe" });
   }
@@ -65,7 +65,7 @@ const reportsPost = async (req, res = response) => {
   const data = {
     name,
     message,
-    user: req.user._id,
+    userName,
   };
 
   const reports = new Reports(data);
